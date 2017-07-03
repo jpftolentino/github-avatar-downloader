@@ -1,3 +1,6 @@
+var repoOwner = process.argv[2];
+var repoName = process.argv[3];
+
 var request = require('request');
 var fs = require('fs');
 
@@ -43,7 +46,7 @@ function downloadImageByURL(url, filePath) {
   request(url).pipe(fs.createWriteStream("./avatars/" + filePath + '.jpg'));
 }
 
-getRepoContributors("jquery", "jquery", downloadImageByURL);
+getRepoContributors(repoOwner, repoName, downloadImageByURL);
 
 // downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg");
 // downloadImageByURL();
