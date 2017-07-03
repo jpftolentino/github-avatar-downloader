@@ -23,6 +23,11 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
+    if (!repoOwner || !repoName) {
+      console.log('No repoName or repoOwner submitted');
+      return;
+    }
+
   //must pass option object with the proper keys in order to make  a successful request
     request(option, function(err, response, body) {
       if (err) {
