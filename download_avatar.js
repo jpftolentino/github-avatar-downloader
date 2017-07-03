@@ -29,24 +29,26 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
 
   //must pass option object with the proper keys in order to make  a successful request
-    request(option, function(err, response, body) {
-      if (err) {
-        console.log(`Error fetching: ${option}`, err);
-        return;
-      }
+  request(option, function(err, response, body) {
+    if (err) {
+      console.log(`Error fetching: ${option}`, err);
+      return;
+    }
 
+    //if request was successful iterate through github profiles use avatar url key and login as parameters for callback
     if(response.statusCode === 200) {
       var json = JSON.parse(body);
       json.forEach(function(item) {
-        // console.log(item['avatar_url']);
         console.log(item['avatar_url'],item['login'])
         cb(item["avatar_url"],item["login"]);
       })
 
     }
+
   });
 }
 
+//downloads images and outputs them into avatars folder of project
 function downloadImageByURL(url, filePath) {
   request(url).pipe(fs.createWriteStream("./avatars/" + filePath + '.jpg'));
 }
