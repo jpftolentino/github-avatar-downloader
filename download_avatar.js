@@ -1,3 +1,14 @@
+require('dotenv').config();
+
+// var db = require('db');
+
+// db.connect({
+//   api: process.env.GITHUB_TOKEN,
+//   user: process.env.GITHUB_USER
+// })
+
+//fix .env .... ask for help tomorrow
+
 var repoOwner = process.argv[2];
 var repoName = process.argv[3];
 
@@ -6,8 +17,9 @@ var fs = require('fs');
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
-var GITHUB_USER = 'jpftolentino';
-var GITHUB_TOKEN = '1cc7286ae8e54f8294fc4c6ea9f900a1a447d79c';
+
+var GITHUB_USER = process.env.GITHUB_USER;
+var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -57,3 +69,5 @@ getRepoContributors(repoOwner, repoName, downloadImageByURL);
 
 // downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg");
 // downloadImageByURL();
+
+// Use the URL to request information from server
